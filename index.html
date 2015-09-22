@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<script src="js/jquery.js"></script>
-		<script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.3.js"></script>
 		<script src="js/moment-with-locales.js"></script>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
 		<script src="bootstrap/js/bootstrap.js"></script>
@@ -52,19 +51,11 @@
 		                    <div class="well clonedInput_1 col-sm-12" id="vehicle1">
 		                    	<div class="col-sm-2">
 		                    		<label class="control-label" for="vehicleMake">Make</label>
-			                        <select class="form-control" id="vehicleMake"> 
-			                        	<option>Mazda</option>
-			                        	<option>Toyota</option>
-			                        	<option>BMW</option>
-			                        </select>
+			                        <select class="form-control" id="vehicleMake"></select>
 		                        </div>
 		                    	<div class="col-sm-2">
 		                    		<label class="control-label" for="vehicleModel">Model</label>
-			                        <select class="form-control" id="vehicleModel">
-			                        	<option>Rx7</option>
-			                        	<option>Camry</option>
-			                        	<option>Ambulance</option>
-			                        </select>
+			                        <select class="form-control" id="vehicleModel"></select>
 		                        </div>
 	                        	<div class="col-sm-2">
 	                        		<label class="control-label" for="color">Color</label>
@@ -80,7 +71,7 @@
 	                        	</div>
 	                        	<div class="col-sm-1">
 	                        		Quote
-	                        		<label class="control-label">$45.91</label>
+	                        		<label id="quote">$45.91</label>
 	                    		</div>
 		                    </div>
 					        <p>
