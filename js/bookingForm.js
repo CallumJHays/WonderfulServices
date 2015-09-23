@@ -20,14 +20,33 @@ $(function(){
 
 	// update the select list with makelist
 	var vehicleMakeOptionsHtml;
+	var jobLengthHours = [];
 	$.each(makeList, function(index, name){
 		vehicleMakeOptionsHtml += '<option>'+name+'</option>';
 	});
 	$('#vehicleMake').html(vehicleMakeOptionsHtml);
 
+	// calculate and change the quote label
+	function calculateQuote($vehicle){
+		$vehicle.find('#quote').html("loading...");
+		$.getJSON(apiURL, {cmd:"getTrims", model:$vehicle.find('#vehicleModel').val()}, function(response){
+			if(response.Trims[0].model_body == null){
+				// search for vehicle class 0
+				console.log('null found!');
+			}
+			else{
+				// use database to find the vehicle class given the model_body
+				var listOfBodyTypes = ["Large Cars", "Not Available", "Midsize Cars", "Sport Utility Vehicles",
+					"Standard Sport Utility Vehicles", "Subcompact Cars", "Compact Cars", "Minivan", "Two Seaters", 
+					"Standard Pickup Trucks", "Small Pickup Trucks", "Small Station Wagons", "Small Sport Utility Vehicles", 
+					"Cargo Vans", "Passenger Vans"]
+			}
+			// use google sheets api to find the cost of vehicle class with specific service, and hadpet?
+		});
+	}
+
 	// use carquery api to populate the model list
 	function populateModelSelectList($vehicle){
-		console.log($vehicle);
 		$vehicle.find('#vehicleModel').html("loading...");
 		$.getJSON(apiURL, {cmd:"getModels", make:$vehicle.find('#vehicleMake').val().toLowerCase()}, function(response){
 			var vehicleModelOptionsHtml = "";
@@ -36,6 +55,8 @@ $(function(){
 			});
 			$vehicle.find('#vehicleModel').html(vehicleModelOptionsHtml);
 			calculateQuote($vehicle);
+			jobLengthHours.push(0.5); // push the hours it takes from the google sheets
+    		changeBookingPickerFinishTime();
 		});
 	}
 	populateModelSelectList($('#vehicle1'));
@@ -52,36 +73,29 @@ $(function(){
 		calculateQuote($(this).parent().parent());
 	});
 
-	// calculate and change the quote label
-	function calculateQuote($vehicle){
-		$vehicle.find('#quote').html("loading...");
-		$.getJSON(apiURL, {cmd:"getTrims", model:$vehicle.find('#vehicleModel').val()}, function(response){
-			if(response.Trims[0].model_body == null){
-				// search for vehicle class 0
-			}
-			else{
-				// use database to find the vehicle class given the model_body
-			}
-			// use google sheets api to find the cost of vehicle class with specific service, and hadpet?
-		});
-	}
-
 	var fullyBookedDates = []; 
     $('#bookingpicker').datetimepicker({
     	daysOfWeekDisabled: [0, 6],
-    	format: "dddd, MMMM Do, h:mma - ",
+    	format: "dddd, MMMM Do, h:mm a - ",
     	stepping: 30,
     	minDate: moment().add(3, 'day').day(8).hour(8).minute(0),
+    	defaultDate: moment().add(3, 'day').day(8).hour(9).minute(0),
     	disabledDates: fullyBookedDates,
     	sideBySide: true, 
     	enabledHours: [9,10,11,12,13,14,15]// Change as necessary
     });
 
-    function changeBookingPickerFinishTime(hours){
-		var finishtime = $('#bookingpicker').data("DateTimePicker").date().add(hours, 'hour').format('h:mm');
-		$('#bookingpicker').data("DateTimePicker").format("dddd, MMMM Do, h:mma - " + finishtime);
+    function changeBookingPickerFinishTime(){
+    	var totalJobLengthHours = 0;
+    	$.each(jobLengthHours,function(index, vehiclehours){
+    		totalJobLengthHours += vehiclehours
+    	});
+		var finishtime = $('#bookingpicker').data("DateTimePicker").date().add(totalJobLengthHours, 'hour').format('h:mm');
+		$('#bookingpicker').data("DateTimePicker").format("dddd, MMMM Do, h:mm a - " + finishtime);
     }
 
-    changeBookingPickerFinishTime(3);
+	$(document).on('dp.change', '#bookingpicker', function(){
+		changeBookingPickerFinishTime();
+	});
 
 });
