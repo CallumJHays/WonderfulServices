@@ -21,6 +21,7 @@ $(function(){
 	// update the select list with makelist
 	var vehicleMakeOptionsHtml;
 	var jobLengthHours = [];
+	var jobPrices = [];
 	$.each(makeList, function(index, name){
 		vehicleMakeOptionsHtml += '<option>'+name+'</option>';
 	});
@@ -28,8 +29,10 @@ $(function(){
 
 	// calculate and change the quote label
 	function calculateQuote($vehicle){
+		jobPrices.splice($vehicle.find('#quote').val());
 		$vehicle.find('#quote').html("loading...");
 		$.getJSON(apiURL, {cmd:"getTrims", model:$vehicle.find('#vehicleModel').val()}, function(response){
+
 			if(response.Trims[0].model_body == null){
 				// search for vehicle class 0
 				console.log('null found!');
@@ -42,6 +45,8 @@ $(function(){
 					"Cargo Vans", "Passenger Vans"]
 			}
 			// use google sheets api to find the cost of vehicle class with specific service, and hadpet?
+			var totalCost = 40.50;
+			$('#paypalAmount').setVal(totalCost);
 		});
 	}
 
