@@ -21,51 +21,67 @@ $(function(){
 	// update the select list with makelist
 	var vehicleMakeOptionsHtml;
 	$.each(makeList, function(index, name){
-		vehicleMakeOptionsHtml += '<option value='+name+'>'+name+'</option>';
+		vehicleMakeOptionsHtml += '<option>'+name+'</option>';
 	});
 	$('#vehicleMake').html(vehicleMakeOptionsHtml);
 
 	// use carquery api to populate the model list
-	function returnModelList(manufacturer){
-		$.getJSON(apiURL, {cmd:"getModels", make:manufacturer.toLowerCase()}, function(response){
-			var vehicleModelOptionsHtml;
-			console.log(response);
-			$.each(response.Models, function(index, name){
-				vehicleModelOptionsHtml += '<option>'+name+'</option>';
+	function populateModelSelectList($vehicle){
+		console.log($vehicle);
+		$vehicle.find('#vehicleModel').html("loading...");
+		$.getJSON(apiURL, {cmd:"getModels", make:$vehicle.find('#vehicleMake').val().toLowerCase()}, function(response){
+			var vehicleModelOptionsHtml = "";
+			$.each(response.Models, function(index, model){
+				vehicleModelOptionsHtml += '<option>'+ model.model_name +'</option>';
 			});
-			return vehicleModelOptionsHtml;
+			$vehicle.find('#vehicleModel').html(vehicleModelOptionsHtml);
+			calculateQuote($vehicle);
 		});
 	}
-	$('#vehicleModel').html(returnModelList($("#vehicleMake").val()));
+	populateModelSelectList($('#vehicle1'));
 
 	$(document).on('change', '#vehicleMake', function(){
-		$(this).parent().parent().find('#vehicleModel').html(returnModelList($("#vehicleMake").val()));
-		$.getJSON(apiURL, {cmd:"getModel", 
-			model_name:$(this).parent().parent().find('#vehicleModel').val()}, 
-			function(response){
-				console.log(response);
-				calculateQuote(response[0].model_name, 
-					$(this).parent().parent().find('#service').val(), 
-					$(this).parent().parent().find('#hasPet').val());
-		});
+		populateModelSelectList($(this).parent().parent());
+	});
+
+	$(document).on('change', '#vehicleModel', function(){
+		calculateQuote($(this).parent().parent());
+	});
+
+	$(document).on('change', '#service', function(){
+		calculateQuote($(this).parent().parent());
 	});
 
 	// calculate and change the quote label
-	function calculateQuote(bodyType, service, hasPet){
-
+	function calculateQuote($vehicle){
+		$vehicle.find('#quote').html("loading...");
+		$.getJSON(apiURL, {cmd:"getTrims", model:$vehicle.find('#vehicleModel').val()}, function(response){
+			if(response.Trims[0].model_body == null){
+				// search for vehicle class 0
+			}
+			else{
+				// use database to find the vehicle class given the model_body
+			}
+			// use google sheets api to find the cost of vehicle class with specific service, and hadpet?
+		});
 	}
-	
-	// TODO make automatically calculated
-	finishtime = "4:30"; 
 
 	var fullyBookedDates = []; 
     $('#bookingpicker').datetimepicker({
     	daysOfWeekDisabled: [0, 6],
-    	format: "dddd, MMMM Do, h:mma - " + finishtime,
+    	format: "dddd, MMMM Do, h:mma - ",
     	stepping: 30,
     	minDate: moment().add(3, 'day').day(8).hour(8).minute(0),
     	disabledDates: fullyBookedDates,
     	sideBySide: true, 
     	enabledHours: [9,10,11,12,13,14,15]// Change as necessary
     });
+
+    function changeBookingPickerFinishTime(hours){
+		var finishtime = $('#bookingpicker').data("DateTimePicker").date().add(hours, 'hour').format('h:mm');
+		$('#bookingpicker').data("DateTimePicker").format("dddd, MMMM Do, h:mma - " + finishtime);
+    }
+
+    changeBookingPickerFinishTime(3);
+
 });
