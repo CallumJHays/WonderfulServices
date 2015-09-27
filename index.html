@@ -11,6 +11,7 @@
 		<script src="js/bootbox.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"></link>
 		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/papaparse.min.js"></script>
 		<script src="js/dynamic-form.js"></script>
 		<script src="js/bookingForm.js"></script>
 	</head>
@@ -66,9 +67,10 @@
 		                        <div class="col-sm-3">
 		                        	<label class="control-label" for="service">Service</label>
 		                        	<select class="serviceSelect form-control" id="service">
-		                        		<option>Exterior Only</option>
-		                        		<option>Car wash (in&out)</option>
-		                        		<option>Mini Detail</option>
+		                        		<option value="car_wash" data-toggle="tooltip" title="With the standard car wash, we clean both the inside and outside of the car">Car Wash (extras available)</option>
+		                        		<option value="exterior_only" data-toggle="tooltip" title="Exterior Only services only wash the exterior of the car.">Exterior Only</option>
+		                        		<option value="mini_detail" data-toggle="tooltip" title="Mini detail is ....">Mini Detail</option>
+		                        		<option value="full_detail" data-toggle="tooltip" title="A full detail service is like a mini detail service but ...">Full Detail</option>
 	                        		</select>
 	                        	</div>
 	                        	<div class="col-sm-1">
@@ -98,28 +100,6 @@
 						</div>
 					</div>
 					<br>
-
-
-					<div class="row">
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_xclick">
-							<input type="hidden" name="business" value="FCY7RGE98QLG8">
-							<input type="hidden" name="lc" value="AU">
-							<input type="hidden" name="button_subtype" value="services">
-							<input type="hidden" name="currency_code" value="AUD">
-							<input type="hidden" name="amount" value="0.00" id="paypalAmount">
-							<input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
-							<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-						</form>
-
-
-						<div class="form-group">
-							<button type="submit" class="btn btn-success">Submit</button>
-						</div>
-					</div>
-					<br>
-
 				</form>
 			</div>
 		</div>
