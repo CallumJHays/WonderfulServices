@@ -1,0 +1,15 @@
+vehicle_class_definition,car_wash_cost,car_wash_minutes,mini_detail_cost,mini_detail_minutes,exterior_only_cost,exterior_only_minutes,full_detail_cost,full_detail_minutes
+Not Available,50,75,65,90,30,30,65,90
+Midsize Cars,39.5,60,54.5,90,22,30,54.5,90
+Large Cars,39.5,60,54.5,90,22,30,54.5,90
+Small Sport Utility Vehicles,39.5,60,54.5,90,22,30,54.5,90
+Small Station Wagons,42.5,75,57.5,90,24,30,57.5,90
+Standard Sport Utility Vehicles,46.5,75,61.5,90,25,30,61.5,90
+Sport Utility Vehicles,44.5,75,59.5,90,25,30,59.5,90
+Standard Pickup Trucks,44.5,75,59.5,90,25,30,59.5,90
+Small Pickup Trucks,42.5,75,57.5,90,24,30,57.5,90
+Passenger Vans,50,75,65,90,30,30,65,90
+Cargo Vans,50,75,65,90,30,30,65,90
+Minivan,50,75,65,90,30,30,65,90
+Compact Cars,39.5,60,54.5,90,22,30,54.5,90
+Subcompact Cars,39.5,60,54.5,90,22,30,54.5,90
