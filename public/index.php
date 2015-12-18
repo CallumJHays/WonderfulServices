@@ -1,7 +1,3 @@
-<?php
-include '../lib/php-login-minimal/index.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
