@@ -1,26 +1,30 @@
+<?php
+include 'lib/php-login-minimal/index.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<script src="js/jquery.js"></script>
-		<script src="js/moment-with-locales.js"></script>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-		<script src="bootstrap/js/bootstrap.js"></script>
+		<script src="public/js/jquery.js"></script>
+		<script src="public/js/moment-with-locales.js"></script>
+		<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css"></link>
+		<script src="public/bootstrap/js/bootstrap.js"></script>
 		<script src="js/bootbox.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap-datetimepicker.css"></link>
-		<script src="js/bootstrap-datetimepicker.min.js"></script>
-		<script src="js/papaparse.min.js"></script>
-		<script src="js/validator.js"></script>
-		<script src="js/bookingForm.js"></script>
+		<script src="public/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="public/js/papaparse.min.js"></script>
+		<script src="public/js/validator.js"></script>
+		<script src="public/js/bookingForm.js"></script>
 	</head>
 
 	<body>
 		<div class="container">
 			<div class="col-sm-offset-2 col-sm-8">
 				<div class="col-sm-2">
-					<img alt="Wonderful Services Logo" src="img/WSlogo.png" width="100%" height="100%">
+					<img alt="Wonderful Services Logo" src="public/img/WSlogo.png" width="100%" height="100%">
 				</div>
 				<div class="col-sm-10">
 					<h1>Wonderful Services Booking</h1>
