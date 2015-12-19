@@ -27,7 +27,7 @@
 					<p>Fill out this form to book your Wonderful Services car wash</p>
 				</div>
 
-				<form class="form-horizontal col-sm-12" id="bookings" role="form" action="api/new_booking" method="post">
+				<form class="form-horizontal col-sm-12" id="bookings" role="form" action="api/new_booking.php" method="post">
                     <div class="form-group">
                     	<label class="control-label" for="title">Title:</label>
                     	<select class="serviceSelect form-control" id="title" name="title">
