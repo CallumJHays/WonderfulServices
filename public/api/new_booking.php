@@ -37,9 +37,9 @@ if(isset($salutation) && isset($full_name) && isset($contact_number)
     {
         $vehicleModel = $_POST['vehicleModel'][$index];
     
-         $sql = "INSERT INTO tbl_customer_vehicle(vehicleMake, vehicleModel, pet_hair, tyre_shine,
+         $sql = "INSERT INTO tbl_customer_vehicle(vehicleMake, vehicleModel, body_type, pet_hair, tyre_shine,
                  dashboard_shine, intensive_inside, bug_tar_removal, order_id)
-                 VALUES('".$vehicleMake."','".$vehicleModel."','".$POST['pet_hair'][$index]."', '".$POST['tyre_shine'][$index]."',
+                 VALUES('".$vehicleMake."','".$vehicleModel."','".$POST['body']."','".$POST['pet_hair'][$index]."', '".$POST['tyre_shine'][$index]."',
                  '".$POST['dashboard_shine'][$index]."', '".$POST['intensive_inside'][$index]."', '".$POST['bug_tar_removal'][$index]."',
                  '".$order_id."');";
 

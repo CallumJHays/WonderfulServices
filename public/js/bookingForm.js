@@ -90,6 +90,7 @@ $(function(){
 				});
 				return csv[row][column];
 			}
+			$("#body").val(response.Trims[0].model_body);
 			var cost = 0, minutes = 0, model = '';
 			if(response.Trims[0] === undefined){
 				model = "Not Available";

@@ -80,6 +80,7 @@
 	                    	<div class="col-sm-3">
 	                    		<label class="control-label" for="vehicleModel">Model</label>
 		                        <select class="form-control" id="vehicleModel" name="vehicleModel[]"></select>
+		                        <input type="hidden" name="body" id="body"/>
 	                        </div>
 	                        <div class="col-sm-3">
 	                        	<label class="control-label" for="deal">Deal</label>
