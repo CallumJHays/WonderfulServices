@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /_INSTALL/
+Disallow: /00_ADMIN_CSV_FOLDER/
