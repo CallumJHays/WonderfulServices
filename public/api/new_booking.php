@@ -52,5 +52,7 @@ if(isset($salutation) && isset($full_name) && isset($contact_number)
     }
     
     $conn->close();
-}
+}else{
+     echo("Please enter all values on the booking form");   
+    }
 ?>

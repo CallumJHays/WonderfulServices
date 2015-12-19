@@ -1,7 +1,10 @@
 <?php 
+require_once('lib/db.php');
+include_once('template/header.php');
+
 //Connects to your Database 
-mysql_connect("127.0.0.1","mattd360","", "") or die(mysql_error()); 
-mysql_select_db("c9") or die(mysql_error()); 
+mysql_connect($servername,$username,$password, "") or die(mysql_error()); 
+mysql_select_db($d) or die(mysql_error()); 
 
 //This code runs if the form has been submitted
 if (isset($_POST['submit'])) { 
@@ -84,4 +87,6 @@ value="Register"></th></tr> </table>
 
  <?php
  }
+ include_once('template/footer.php');
  ?> 
+

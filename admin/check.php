@@ -1,7 +1,10 @@
 <?php
+
+include_once('lib/db.php');
+
 //Connects to your Database 
-mysql_connect("127.0.0.1","mattd360","", "") or die(mysql_error()); 
-mysql_select_db("c9") or die(mysql_error()); 
+mysql_connect($servername,$username,$password, "") or die(mysql_error()); 
+mysql_select_db($dbname) or die(mysql_error()); 
 
  //checks cookies to make sure they are logged in 
  if(isset($_COOKIE['ID_your_site'])){ 

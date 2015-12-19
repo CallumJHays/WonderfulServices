@@ -1,8 +1,8 @@
+
 <?php 
-
 require_once('check.php');
-require_once('lib/db.php');
-
+require_once('csv-to-array.php');
+include_once('template/header.php');
 
 $sql = "SELECT tbl_customer.cus_id ,salutation, full_name, date_placed FROM tbl_customer, tbl_order WHERE tbl_customer.cus_id = tbl_order.cus_id; ";
 $result = $conn->query($sql);
@@ -16,6 +16,10 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 $conn->close();
+
+
+
 ?>
 
 <a href="logout.php">Log Out</a>
+<?php include_once('template/footer.php'); ?>

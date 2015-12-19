@@ -1,7 +1,8 @@
 <?php 
-
+require_once('lib/db.php');
+include_once('template/header.php');
 //Connects to your Database 
-$conect = mysqli_connect("127.0.0.1","mattd360","", "c9") or die(mysql_error()); 
+$conect = mysqli_connect($hostname,$username,$password, $dbname) or die(mysql_error()); 
 
 //Checks if there is a login cookie
 if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes you to the members page
@@ -11,9 +12,6 @@ if(isset($_COOKIE['ID_your_site'])){ //if there is, it logs you in and directes 
 
  	while($info = mysqli_fetch_array( $check )){
  		if ($pass != $info['password']){}
- 		else{
- 			header("Location: login.php");
-		}
  	}
  }
 
@@ -96,4 +94,6 @@ else{
 
  <?php 
  }
+ 
+ include_once('template/footer.php');
  ?> 
