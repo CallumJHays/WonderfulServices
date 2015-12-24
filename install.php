@@ -99,10 +99,10 @@ if(file_exists("../../install.php"))
     
 } 
 
-$servername = "localhost";
-$username = "mattd360";
-$password = "";
-$dbname = "c9";
+$servername = "'.$servername.'";
+$username = "'.$username.'";
+$password = "'.$password.'";
+$dbname = "'.$dbname.'";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
