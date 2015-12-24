@@ -7,7 +7,7 @@ tyre_shine int,
 dashboard_shine int,
 intensive_inside int,
 bug_tar_removal int,
-body_type varchar(20) default 'Not Available'
+body_type varchar(20) default 'Not Available',
 order_id int,
 PRIMARY KEY(veh_id)
 );
